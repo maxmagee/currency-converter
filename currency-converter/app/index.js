@@ -6,6 +6,7 @@ import CurrencyList from './screens/CurrencyList';
 
 EStyleSheet.build({
   $border: '#E2E2E2',
+  $darkText: '#343434',
   $inputText: '#797979',
   $lightGray: '#F0F0F0',
   $primaryBlue: '#4F6D7A',
