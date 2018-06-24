@@ -10,7 +10,6 @@ class Logo extends Component {
   constructor(props) {
     super(props);
 
-    this.containerImageWidth = new Animated.Value(styles.$largeContainerSize);
     this.imageWidth = new Animated.Value(styles.$largeImageSize);
   }
 
@@ -35,32 +34,25 @@ class Logo extends Component {
   }
 
   keyboardShow = () => {
-    Animated.timing(this.containerImageWidth, {
-      toValue: styles.$smallContainerSize,
+    Animated.timing(this.imageWidth, {
+      toValue: styles.$smallImageSize,
       duration: ANIMATION_DURATION
     }).start();
   };
 
   keyboardHide = () => {
-    Animated.timing(this.containerImageWidth, {
-      toValue: styles.$largeContainerSize,
+    Animated.timing(this.imageWidth, {
+      toValue: styles.$largeImageSize,
       duration: ANIMATION_DURATION
     }).start();
   };
 
   render() {
-    const containerImageStyle = [
-      styles.containerImage,
-      { width: this.containerImageWidth, height: this.containerImageWidth }
-    ];
+    const imageStyle = [styles.image, { width: this.imageWidth, height: this.imageWidth }];
 
     return (
       <View style={styles.container}>
-        <Animated.Image
-          resizeMode="contain"
-          style={containerImageStyle}
-          source={logoWithBackgroundImage}
-        />
+        <Animated.Image resizeMode="contain" style={imageStyle} source={logoWithBackgroundImage} />
         <Text style={styles.text}>Currency Converter</Text>
       </View>
     );
