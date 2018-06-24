@@ -1,8 +1,7 @@
 import React from 'react';
 import EStyleSheet from 'react-native-extended-stylesheet';
 
-//import Home from './screens/Home';
-import Themes from './screens/Themes';
+import Navigator from './config/routes';
 
 EStyleSheet.build({
   $border: '#E2E2E2',
@@ -18,5 +17,4 @@ EStyleSheet.build({
 
 // in build, you can say outline: 1 to get an outline of each component
 
-//export default () => <Home />;
-export default () => <Themes />;
+export default () => <Navigator />;
