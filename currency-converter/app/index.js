@@ -11,4 +11,6 @@ EStyleSheet.build({
   $white: '#fff'
 });
 
+// in build, you can say outline: 1 to get an outline of each component
+
 export default () => <Home />;
