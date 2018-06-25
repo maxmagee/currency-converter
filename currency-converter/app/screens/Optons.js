@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Platform, SafeAreaView, ScrollView, StatusBar } from 'react-native';
+import { Linking, Platform, SafeAreaView, ScrollView, StatusBar } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
 import { ListItem, Separator } from '../components/List';
@@ -18,7 +18,9 @@ class Options extends Component {
     this.props.navigation.navigate('Themes');
   };
 
-  handleSitePress = () => {};
+  handleSitePress = () => {
+    Linking.openURL('http://fixer.io').catch(() => alert('An error occurred.'));
+  };
 
   render() {
     return (
