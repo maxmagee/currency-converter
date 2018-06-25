@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Platform, SafeAreaView, ScrollView, StatusBar } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
@@ -9,7 +10,13 @@ const ICON_PREFIX = Platform.OS === 'ios' ? 'ios' : 'md';
 const ICON_SIZE = 23;
 
 class Options extends Component {
-  handleThemesPress = () => {};
+  static propTypes = {
+    navigation: PropTypes.object
+  };
+
+  handleThemesPress = () => {
+    this.props.navigation.navigate('Themes');
+  };
 
   handleSitePress = () => {};
 
