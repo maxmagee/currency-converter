@@ -1,12 +1,18 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Animated, Keyboard, Platform, Text, View } from 'react-native';
 
-import logoWithBackgroundImage from './images/logoWithBackground.png';
+import imageSources from './imageSources';
+
 import styles from './styles';
 
 const ANIMATION_DURATION = 250;
 
 class Logo extends Component {
+  static propTypes = {
+    tintColor: PropTypes.string
+  };
+
   constructor(props) {
     super(props);
 
@@ -52,7 +58,11 @@ class Logo extends Component {
 
     return (
       <View style={styles.container}>
-        <Animated.Image resizeMode="contain" style={imageStyle} source={logoWithBackgroundImage} />
+        <Animated.Image
+          resizeMode="contain"
+          style={imageStyle}
+          source={imageSources[this.props.tintColor]}
+        />
         <Text style={styles.text}>Currency Converter</Text>
       </View>
     );
