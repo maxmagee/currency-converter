@@ -73,7 +73,8 @@ const reducer = (state = initialState, action) => {
             isFetching: false,
             ...action.result
           }
-        }
+        },
+        error: null
       };
     case GET_INITIAL_CONVERSION:
       return {
