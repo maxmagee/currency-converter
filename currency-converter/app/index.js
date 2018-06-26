@@ -1,8 +1,10 @@
 import React from 'react';
 import EStyleSheet from 'react-native-extended-stylesheet';
+import { Provider } from 'react-redux';
 
 import Navigator from './config/routes';
 import { AlertProvider } from './components/Alert';
+import store from './config/store';
 
 EStyleSheet.build({
   $border: '#E2E2E2',
@@ -19,7 +21,9 @@ EStyleSheet.build({
 // in build, you can say outline: 1 to get an outline of each component
 
 export default () => (
-  <AlertProvider>
-    <Navigator />
-  </AlertProvider>
+  <Provider store={store}>
+    <AlertProvider>
+      <Navigator />
+    </AlertProvider>
+  </Provider>
 );
