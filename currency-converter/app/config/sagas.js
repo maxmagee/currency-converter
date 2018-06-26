@@ -10,6 +10,8 @@ import {
 import { getLatestRate } from '../api/currencies';
 
 function* fetchLatestConversionRates(action) {
+  const errorMessage = 'Error updating conversion rate.';
+
   try {
     let currency = action.currency;
 
@@ -21,12 +23,12 @@ function* fetchLatestConversionRates(action) {
     const result = yield response.data;
 
     if (result.error) {
-      yield put(setConversionError(result.error));
+      yield put(setConversionError(errorMessage));
     } else {
       yield put(setConversionResult(result));
     }
   } catch (error) {
-    yield put(setConversionError(error.message));
+    yield put(setConversionError(errorMessage));
   }
 }
 
