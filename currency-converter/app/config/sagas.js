@@ -1,14 +1,33 @@
-import { takeEvery } from 'redux-saga/effects';
+import { call, takeEvery, put, select } from 'redux-saga/effects';
 
-// 1. Swap currency
-// 2. Change base currency
-// 3. Upon initial app load
-
-import { CHANGE_BASE_CURRENCY, GET_INITIAL_CONVERSION, SWAP_CURRENCY } from '../actions/currencies';
+import {
+  CHANGE_BASE_CURRENCY,
+  GET_INITIAL_CONVERSION,
+  SWAP_CURRENCY,
+  setConversionError,
+  setConversionResult
+} from '../actions/currencies';
+import { getLatestRate } from '../api/currencies';
 
 function* fetchLatestConversionRates(action) {
-  console.log('TODO: Update the things', action);
-  yield;
+  try {
+    let currency = action.currency;
+
+    if (currency === undefined) {
+      currency = yield select(state => state.currencies.baseCurrency);
+    }
+
+    const response = yield call(getLatestRate, currency);
+    const result = yield response.data;
+
+    if (result.error) {
+      yield put(setConversionError(result.error));
+    } else {
+      yield put(setConversionResult(result));
+    }
+  } catch (error) {
+    yield put(setConversionError(error.message));
+  }
 }
 
 export default function* rootSaga() {
